@@ -1,31 +1,42 @@
 import React, {useEffect, useState} from "react";
+import './Counter.css';
 
 function Counter (){
         const [seconds, setSeconds] = useState(120);
-        const [active, setActive] = useState(false);
-
+        let [active, setActive] = useState(false);
         let initialValue = new Date(seconds * 1000).toISOString().substr(14, 5);
 
-        useEffect(() => {
-        countdown();
-       }, [active])
+
+       //  useEffect(() => {
+       //      if(active) {
+       //          clearInterval(myInterval);
+       //          setActive(active => !active);
+       //      }
+       // }, [active])
+
+        // if (seconds<=0) setActive(active=false);
 
         function countdown (){
-            return setSeconds(seconds-1);
+            return setSeconds((seconds)=>seconds-1);
         }
 
-        const startClickHandler = () => {
-           const myInterval = setInterval(countdown, 1000);
-           if(!active) clearInterval(myInterval);
+        let myInterval;
+        const clickHandler = () => {
+            if (active===false){
+                myInterval = setInterval(countdown, 1000);
+                setActive(active => active)
+            }
+            else if (active){
+                clearInterval(myInterval);
+            //     setSeconds(prevState => prevState);
+             }
         }
-
-        const stopClickHandler = () => setActive(active => !active);
 
         return <div>
                 <p>{initialValue}</p>
-                <button onClick={startClickHandler}>Start</button>
-                <button onClick={stopClickHandler}>Pause</button>
-        </div>
+                <button onClick={clickHandler}>Start/Pause</button>
+
+                </div>
 }
 
 export default Counter;
