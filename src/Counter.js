@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import './Counter.css';
 
 function Counter (){
@@ -24,11 +24,10 @@ function Counter (){
         const clickHandler = () => {
             if (active===false){
                 myInterval = setInterval(countdown, 1000);
-                setActive(active => active)
+                setActive(active=true);
             }
-            else if (active){
+            else {
                 clearInterval(myInterval);
-            //     setSeconds(prevState => prevState);
              }
         }
 
