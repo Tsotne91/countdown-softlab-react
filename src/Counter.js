@@ -7,16 +7,24 @@ function Counter (){
         let initialValue = new Date(seconds * 1000).toISOString().substr(14, 5);
 
         useEffect(() => {
-        setTimeout(startClickHandler, 1000);
+        countdown();
        }, [active])
 
-        const startClickHandler = () => setSeconds((seconds) => seconds-1);
+        function countdown (){
+            return setSeconds(seconds-1);
+        }
+
+        const startClickHandler = () => {
+           const myInterval = setInterval(countdown, 1000);
+           if(!active) clearInterval(myInterval);
+        }
+
         const stopClickHandler = () => setActive(active => !active);
 
         return <div>
                 <p>{initialValue}</p>
                 <button onClick={startClickHandler}>Start</button>
-                <button onClick={stopClickHandler}>Stop</button>
+                <button onClick={stopClickHandler}>Pause</button>
         </div>
 }
 
