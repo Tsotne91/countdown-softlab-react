@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Counter.css';
 
 function Counter (){
@@ -6,35 +6,35 @@ function Counter (){
         let [active, setActive] = useState(false);
         let initialValue = new Date(seconds * 1000).toISOString().substr(14, 5);
 
+        let myInterval;
+        useEffect(() => {
+            // if (seconds===0) {
+            //     setActive(active=false);
+            //     return setSeconds(0);
+            // }
 
-       //  useEffect(() => {
-       //      if(active) {
-       //          clearInterval(myInterval);
-       //          setActive(active => !active);
-       //      }
-       // }, [active])
-
-        // if (seconds<=0) setActive(active=false);
+            if (active){
+                myInterval = setInterval(countdown, 1000);
+                setActive(active=true);
+                console.log(seconds);
+            }
+            else {
+                clearInterval(myInterval);
+            }
+            return () => clearInterval(myInterval);
+       }, [active])
 
         function countdown (){
             return setSeconds((seconds)=>seconds-1);
         }
 
-        let myInterval;
         const clickHandler = () => {
-            if (active===false){
-                myInterval = setInterval(countdown, 1000);
-                setActive(active=true);
-            }
-            else {
-                clearInterval(myInterval);
-             }
+            setActive( ps => !ps);
         }
 
         return <div>
                 <p>{initialValue}</p>
                 <button onClick={clickHandler}>Start/Pause</button>
-
                 </div>
 }
 
