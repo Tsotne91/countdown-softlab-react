@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import './Counter.css';
+import {Button} from "react-bootstrap"
+//import './Counter.css';
 
 function Counter (){
         const [seconds, setSeconds] = useState(120);
@@ -16,7 +17,6 @@ function Counter (){
             if (active){
                 myInterval = setInterval(countdown, 1000);
                 setActive(active=true);
-                console.log(seconds);
             }
             else {
                 clearInterval(myInterval);
@@ -32,9 +32,19 @@ function Counter (){
             setActive( ps => !ps);
         }
 
+        const resetHandler = () => {
+            setSeconds(120);
+            setActive(false);
+        }
+
         return <div>
-                <p>{initialValue}</p>
-                <button onClick={clickHandler}>Start/Pause</button>
+                <h2>{initialValue}</h2>
+                <Button onClick={clickHandler}
+                        size="lg"
+                        variant="outline-primary">Start/Pause</Button>
+                <Button onClick={resetHandler}
+                        size="lg"
+                        variant="outline-secondary">Reset</Button>
                 </div>
 }
 
