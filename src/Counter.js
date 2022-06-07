@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {Button} from "react-bootstrap"
-//import './Counter.css';
+import {Button, ProgressBar} from "react-bootstrap";
+
 
 function Counter (){
         const [seconds, setSeconds] = useState(120);
@@ -39,6 +39,9 @@ function Counter (){
 
         return <div>
                 <h2>{initialValue}</h2>
+            <div>
+            <ProgressBar now={seconds} variant="success" className="w-50 m-5 border border-dark"/>
+            </div>
                 <Button onClick={clickHandler}
                         size="lg"
                         variant="outline-primary">Start/Pause</Button>
