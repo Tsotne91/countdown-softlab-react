@@ -8,7 +8,7 @@ export default function App(){
     return (
         <>
             <div className="text-center my-3" >
-            <Timer initialSeconds={5}/>
+            <Timer initialSeconds={120}/>
             </div>
         </>
     )

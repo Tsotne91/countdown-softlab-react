@@ -36,7 +36,7 @@ function Timer({initialSeconds}) {
     return <div>
         <h2>{time}</h2>
         <div>
-            <ProgressBar now={/*(initialSeconds/initialValue)*100*/100} variant="success"
+            <ProgressBar now={(seconds/initialSeconds)*100} striped variant="success"
                          className="w-50 m-5 border border-dark"/>
         </div>
         <Button onClick={clickHandler}
